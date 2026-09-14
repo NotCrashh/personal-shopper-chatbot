@@ -14,13 +14,21 @@ def main():
 
     client = genai.Client(api_key=gemini_api_key)
 
-    print("Welcome to your new personal shopper bot!")
+    print("Welcome to your new personal shopper!")
     while True:
         try:
-            query = input("Enter request: ")
+            query = input("What are you looking for today? (ex. Laptop, Desktop, Monitor, Phone)\nEnter request: ")
             if query.lower() == 'exit':
                 print("Thanks. Have a great day!")
                 exit()
+            if "laptop" in query.lower():
+                laptopQuery = input("List your wants and needs (ex. College laptop under $400)")
+                interaction = client.interactions.create(
+                    model="gemini-3.8-flash",
+                    input=f"Customer is looking for a laptop. Give them three options (make, model, cpu, ram, gpu, and price) from bestbuy without any more questions. Query: {laptopQuery}",
+                )
+                print(interaction.output_text)
+
             else:
                 interaction = client.interactions.create(
                     model="gemini-3.8-flash",
