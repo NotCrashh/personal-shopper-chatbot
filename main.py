@@ -22,7 +22,7 @@ def main():
                 print("Thanks. Have a great day!")
                 exit()
             if "laptop" in query.lower():
-                laptopQuery = input("List your wants and needs (ex. College laptop under $400)")
+                laptopQuery = input("List your wants and needs (ex. College laptop under $400): ")
                 interaction = client.interactions.create(
                     model="gemini-3.8-flash",
                     input=f"Customer is looking for a laptop. Give them three options (make, model, cpu, ram, gpu, and price) from bestbuy without any more questions. Query: {laptopQuery}",
