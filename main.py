@@ -4,24 +4,24 @@ import os
 
 
 def main():
-    load_dotenv()  # reads .env into the environment
+    load_dotenv()  # Reads .env into the environment
 
-    gemini_api_key = os.getenv("GEMINI_API_KEY")
+    gemini_api_key = os.getenv("GEMINI_API_KEY") # Gets the api key from .env
 
     if not gemini_api_key:
-        print("GEMINI API KEY NOT FOUND")
+        print("GEMINI API KEY NOT FOUND") # Prints when the api key doesnt exist
         exit()
 
-    client = genai.Client(api_key=gemini_api_key)
+    client = genai.Client(api_key=gemini_api_key) # Sets the api key
 
     print("Welcome to your new personal shopper!")
     while True:
         try:
-            query = input("What are you looking for today? (ex. Laptop, Desktop, Monitor, Phone)\nEnter request: ")
-            if query.lower() == 'exit':
+            query = input("What are you looking for today? (ex. Laptop, Desktop, Monitor, Phone)\nEnter request: ") # Gets input from the user to figure out what they need
+            if query.lower() == 'exit': # Lets the user excape the loop when prompted
                 print("Thanks. Have a great day!")
                 exit()
-            if "laptop" in query.lower():
+            if "laptop" in query.lower(): # Happens when the users prompt includes "laptop"
                 laptopQuery = input("List your wants and needs (ex. College laptop under $400): ")
                 interaction = client.interactions.create(
                     model="gemini-3.8-flash",
@@ -29,13 +29,13 @@ def main():
                 )
                 print(interaction.output_text)
 
-            else:
+            else: # If the user doesnt have a request listed. Then it just asks the ai the users question
                 interaction = client.interactions.create(
                     model="gemini-3.8-flash",
                     input=query
                 )
                 print(interaction.output_text)
-        except Exception as e:
+        except Exception as e: # Prints if theres an error
             print(f"\nAn error occurred: {str(e)}")
             print("Please try again.")
 
