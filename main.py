@@ -18,7 +18,7 @@ def main():
     while True:
         try:
             query = input("What are you looking for today? (ex. Laptop, Desktop, Monitor, Phone)\nEnter request: ") # Gets input from the user to figure out what they need
-            if query.lower() == 'exit': # Lets the user excape the loop when prompted
+            if query.lower() == 'exit': # Lets the user escape the loop when prompted
                 print("Thanks. Have a great day!")
                 exit()
             if "laptop" in query.lower(): # Happens when the users prompt includes "laptop"
@@ -35,7 +35,7 @@ def main():
                     input=query
                 )
                 print(interaction.output_text)
-        except Exception as e: # Prints if theres an error
+        except Exception as e: # Prints if there's an error
             print(f"\nAn error occurred: {str(e)}")
             print("Please try again.")
 
