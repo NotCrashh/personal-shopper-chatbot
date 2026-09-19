@@ -29,10 +29,17 @@ def main():
                 )
                 print(interaction.output_text)
             if "desktop" in query.lower(): # Happens when the users prompt includes "desktop"
-                laptopQuery = input("List your wants and needs (ex. College desktop under $800): ")
+                laptopQuery = input("List your wants and needs (ex. Gaming desktop under $800): ")
                 interaction = client.interactions.create(
                     model="gemini-3.8-flash",
                     input=f"Customer is looking for a desktop. Give them three options (make, model, cpu, ram, gpu, and price) from bestbuy without any more questions. Query: {laptopQuery}",
+                )
+                print(interaction.output_text)
+            if "monitor" in query.lower(): # Happens when the users prompt includes "monitor"
+                laptopQuery = input("List your wants and needs (ex. Gaming monitor under $300): ")
+                interaction = client.interactions.create(
+                    model="gemini-3.8-flash",
+                    input=f"Customer is looking for a monitor. Give them three options (make, model, resolution (ex. 1080p, 1440p, 4k), refresh rate (ex. 60hz), response time (ex. 1ms), and price) from bestbuy without any more questions. Query: {laptopQuery}",
                 )
                 print(interaction.output_text)
 
