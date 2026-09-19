@@ -28,6 +28,13 @@ def main():
                     input=f"Customer is looking for a laptop. Give them three options (make, model, cpu, ram, gpu, and price) from bestbuy without any more questions. Query: {laptopQuery}",
                 )
                 print(interaction.output_text)
+            if "desktop" in query.lower(): # Happens when the users prompt includes "desktop"
+                laptopQuery = input("List your wants and needs (ex. College desktop under $800): ")
+                interaction = client.interactions.create(
+                    model="gemini-3.8-flash",
+                    input=f"Customer is looking for a desktop. Give them three options (make, model, cpu, ram, gpu, and price) from bestbuy without any more questions. Query: {laptopQuery}",
+                )
+                print(interaction.output_text)
 
             else: # If the user doesnt have a request listed. Then it just asks the ai the users question
                 interaction = client.interactions.create(
